@@ -23,6 +23,7 @@ export interface User extends Document{
     password: string;
     VerifyCode: string;
     VerifyCodeExpiry: Date;
+    isVerified: boolean;
     isAcceptingMessage: boolean;
     message: Message[]
 }
@@ -39,5 +40,17 @@ const Userchema: Schema<User> = new Schema({
         required: [true, 'Email is required'],
         unique: true,
         Match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please fill a valid email address'],
+    },
+    password: {
+        type: String,
+        required: [true, 'Password is required'],
+    },
+    VerifyCode: {
+        type: String,
+        required: [true, 'Verify Code is required'],
+    },
+    VerifyCodeExpiry: {
+        type: Date,,
+        required: [true, 'Verify Code Expiry is required'],
     }
 })
